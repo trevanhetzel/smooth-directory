@@ -1,0 +1,15 @@
+/**
+ * All of the CSS for your public-facing functionality should be
+ * included in this file.
+ */
+
+.smooth-directory {
+ 	margin: 0;
+ 	padding: 0;
+ 	list-style: none;
+ }
+
+.smooth-directory__item {
+ 	float: left;
+ 	width: 50%;
+ }
