@@ -23,6 +23,7 @@ $description_value = get_post_meta( $post->ID, 'meta_business_description', true
 $website_value = get_post_meta( $post->ID, 'meta_business_website', true );
 $phone_value = get_post_meta( $post->ID, 'meta_business_phone', true );
 $address_value = get_post_meta( $post->ID, 'meta_business_address', true );
+$address2_value = get_post_meta( $post->ID, 'meta_business_address2', true );
 $city_value = get_post_meta( $post->ID, 'meta_business_city', true );
 $state_value = get_post_meta( $post->ID, 'meta_business_state', true );
 $zip_value = get_post_meta( $post->ID, 'meta_business_zip', true );
@@ -50,7 +51,7 @@ $logo_value = get_post_meta( $post->ID, 'meta_business_logo', true );
 		</tr>
 		<tr>
 			<th scope="row">
-				<label for="business_email"><?php _e( 'Description', '' ); ?></label>
+				<label for="business_description"><?php _e( 'Description', '' ); ?></label>
 			</th>
 			<td>
 				<textarea class="regular-textarea ltr" name="business_description" id="business_description" rows="4"><?php echo esc_attr( $description_value ); ?></textarea>
@@ -58,7 +59,7 @@ $logo_value = get_post_meta( $post->ID, 'meta_business_logo', true );
 		</tr>
 		<tr>
 			<th scope="row">
-				<label for="business_email"><?php _e( 'Website', '' ); ?></label>
+				<label for="business_website"><?php _e( 'Website', '' ); ?></label>
 			</th>
 			<td>
 				<input class="regular-text ltr" type="text" name="business_website" id="business_website" value="<?php echo esc_attr( $website_value ); ?>">
@@ -66,7 +67,7 @@ $logo_value = get_post_meta( $post->ID, 'meta_business_logo', true );
 		</tr>
 		<tr>
 			<th scope="row">
-				<label for="business_email"><?php _e( 'Phone', '' ); ?></label>
+				<label for="business_phone"><?php _e( 'Phone', '' ); ?></label>
 			</th>
 			<td>
 				<input class="regular-text ltr" type="text" name="business_phone" id="business_phone" value="<?php echo esc_attr( $phone_value ); ?>">
@@ -74,15 +75,16 @@ $logo_value = get_post_meta( $post->ID, 'meta_business_logo', true );
 		</tr>
 		<tr>
 			<th scope="row">
-				<label for="business_email"><?php _e( 'Address', '' ); ?></label>
+				<label for="business_address"><?php _e( 'Address', '' ); ?></label>
 			</th>
 			<td>
 				<input class="regular-text ltr" type="text" name="business_address" id="business_address" value="<?php echo esc_attr( $address_value ); ?>">
+				<input class="regular-text ltr" type="text" name="business_address2" id="business_address2" value="<?php echo esc_attr( $address2_value ); ?>">
 			</td>
 		</tr>
 		<tr>
 			<th scope="row">
-				<label for="business_email"><?php _e( 'City', '' ); ?></label>
+				<label for="business_city"><?php _e( 'City', '' ); ?></label>
 			</th>
 			<td>
 				<input class="regular-text ltr" type="text" name="business_city" id="business_city" value="<?php echo esc_attr( $city_value ); ?>">
@@ -90,7 +92,7 @@ $logo_value = get_post_meta( $post->ID, 'meta_business_logo', true );
 		</tr>
 		<tr>
 			<th scope="row">
-				<label for="business_email"><?php _e( 'State', '' ); ?></label>
+				<label for="business_state"><?php _e( 'State', '' ); ?></label>
 			</th>
 			<td>
 				<input class="regular-text ltr" type="text" name="business_state" id="business_state" value="<?php echo esc_attr( $state_value ); ?>">
@@ -98,7 +100,7 @@ $logo_value = get_post_meta( $post->ID, 'meta_business_logo', true );
 		</tr>
 		<tr>
 			<th scope="row">
-				<label for="business_email"><?php _e( 'ZIP', '' ); ?></label>
+				<label for="business_zip"><?php _e( 'ZIP', '' ); ?></label>
 			</th>
 			<td>
 				<input class="regular-text ltr" type="text" name="business_zip" id="business_zip" value="<?php echo esc_attr( $zip_value ); ?>">
@@ -106,7 +108,7 @@ $logo_value = get_post_meta( $post->ID, 'meta_business_logo', true );
 		</tr>
 		<tr>
 			<th scope="row">
-				<label for="business_email"><?php _e( 'Logo', '' ); ?></label>
+				<label for="business_logo"><?php _e( 'Logo', '' ); ?></label>
 			</th>
 			<td>
 				<input type="hidden" name="business_logo" id="business_logo" class="regular-text">

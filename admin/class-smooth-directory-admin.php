@@ -271,6 +271,7 @@ class Smooth_Directory_Admin {
 		$website_data = sanitize_text_field( $_POST['business_website'] );
 		$phone_data = sanitize_text_field( $_POST['business_phone'] );
 		$address_data = sanitize_text_field( $_POST['business_address'] );
+		$address2_data = sanitize_text_field( $_POST['business_address2'] );
 		$city_data = sanitize_text_field( $_POST['business_city'] );
 		$state_data = sanitize_text_field( $_POST['business_state'] );
 		$zip_data = sanitize_text_field( $_POST['business_zip'] );
@@ -283,6 +284,7 @@ class Smooth_Directory_Admin {
 		update_post_meta( $post_id, 'meta_business_website', $website_data );
 		update_post_meta( $post_id, 'meta_business_phone', $phone_data );
 		update_post_meta( $post_id, 'meta_business_address', $address_data );
+		update_post_meta( $post_id, 'meta_business_address2', $address2_data );
 		update_post_meta( $post_id, 'meta_business_city', $city_data );
 		update_post_meta( $post_id, 'meta_business_state', $state_data );
 		update_post_meta( $post_id, 'meta_business_zip', $zip_data );
