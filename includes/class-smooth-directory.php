@@ -160,6 +160,8 @@ class Smooth_Directory {
 
 		$this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'business_add_metabox' );
 		$this->loader->add_action( 'save_post', $plugin_admin, 'business_save_meta_box_data', 10, 2 );
+
+		add_image_size( 'business-thumb', 155, 9999, true );
 	}
 
 	/**
