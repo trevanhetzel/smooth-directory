@@ -7,6 +7,8 @@ if ( $overridden_template = locate_template( 'archive-businesses.php' ) ) {
 
   get_header();
 
+  echo '<h1 class="entry-title">Businesses</h1>';
+
   $letter = get_query_var( 'letter', '' );
   $paged = ( get_query_var( 'paged' ) ) ? absint( get_query_var( 'paged' ) ) : 1;
 

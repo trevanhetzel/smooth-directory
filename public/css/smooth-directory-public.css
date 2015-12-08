@@ -7,9 +7,50 @@
  	margin: 0;
  	padding: 0;
  	list-style: none;
- }
+}
 
 .smooth-directory__item {
  	float: left;
  	width: 50%;
- }
+  margin: 20px 0 0;
+}
+
+.smooth-directory__item img {
+  float: right;
+}
+
+.smooth-directory__item:nth-child(2n+1) {
+  clear: left;
+}
+
+.smooth-directory__interior {
+  width: 90%;
+}
+
+.smooth-pagination {
+  float: right;
+}
+
+.smooth-pagination .page-numbers {
+  padding: 0 2px;
+}
+
+.smooth-filter-row {
+  float: left;
+  width: 100%;
+  padding: 6px 10px;
+  background: #ccc;
+}
+
+.smooth-filter-row a {
+  text-decoration: none;
+  color: #000;
+}
+
+.smooth-filter-row a:hover {
+  color: #fff;
+}
+
+.smooth-filter-row__cat {
+  margin: 0 3px 0 25px;
+}
