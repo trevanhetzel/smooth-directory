@@ -78,26 +78,30 @@ class Smooth_Directory_Public {
 	}
 
 	/**
-	 * Register the stylesheets for the public-facing side of the site.
+	 * Registers archive directory template
 	 *
-	 * @since    1.0.0
+	 * @since 	1.0.0
+	 * @access 	public
 	 */
-	public function enqueue_scripts() {
+	public function directory_get_archive_template($archive_template) {
+		global $post;
 
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Smooth_Directory_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Smooth_Directory_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
+		if (is_post_type_archive('businesses')) {
+			$archive_template = dirname( __FILE__ ) . '/archive-businesses.php';
+		}
+    
+    return $archive_template;
+	} // directory_get_archive_template()
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/smooth-directory-public.js', array( 'jquery' ), $this->version, false );
-
-	}
+	/**
+	 * Registers custom query variables
+	 *
+	 * @since 	1.0.0
+	 * @access 	public
+	 */
+	public function directory_add_query_vars_filter($vars) {
+		$vars[] = 'letter';
+		return $vars;
+	} // directory_add_query_vars_filter()
 
 }
