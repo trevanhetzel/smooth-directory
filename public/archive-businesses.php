@@ -33,7 +33,7 @@ if ( $overridden_template = locate_template( 'archive-businesses.php' ) ) {
     echo '</div>';
   }
 
-  echo '<div class="smooth-filter-row"><strong>Business Name: </strong>'; ?>
+  echo '<div class="smooth-filter-row"><div class="smooth-filter-row__letters"><strong>Business Name: </strong>'; ?>
 
   <a href="<?php echo esc_url( home_url() ); ?>/businesses?letter=a">A</a>
   <a href="<?php echo esc_url( home_url() ); ?>/businesses?letter=b">B</a>
@@ -63,8 +63,9 @@ if ( $overridden_template = locate_template( 'archive-businesses.php' ) ) {
   <a href="<?php echo esc_url( home_url() ); ?>/businesses?letter=z">Z</a>
   <span>|</span>
   <a href="<?php echo esc_url( home_url() ); ?>/businesses">All</a>
+  </div>
 
-  <?php echo '<strong class="smooth-filter-row__cat">Category:</strong>';
+  <?php echo '<div class="smooth-filter-row__cat"><strong>Category:</strong>';
   $taxonomies = array( 
      'business_category'
   );
@@ -82,7 +83,7 @@ if ( $overridden_template = locate_template( 'archive-businesses.php' ) ) {
     foreach ( $taxTerms as $term ) {
       echo '<option value="' . get_term_link($term) . '">' . $term->name . '</option>';
     }
-    echo '</select>';
+    echo '</select></div>';
   }
 
   echo '</div>';
@@ -282,7 +283,20 @@ if ( $overridden_template = locate_template( 'archive-businesses.php' ) ) {
           <p><?php echo get_post_meta( get_the_ID(), 'meta_business_description', true ); ?></p>
         </div>
       </li>
-  <?php } }
+  <?php }
+  echo '</ul>';
+
+  if (!$letter) {
+    echo '<div class="smooth-pagination"><strong>Pages: </strong>';
+    echo paginate_links( array(
+      'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+      'format' => '?paged=%#%',
+      'current' => max( 1, get_query_var('paged') ),
+      'total' => $business_query->max_num_pages
+    ) ); 
+    echo '</div>';
+  }
+  }
 
   get_footer();
 

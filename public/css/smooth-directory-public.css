@@ -11,8 +11,14 @@
 
 .smooth-directory__item {
  	float: left;
- 	width: 50%;
+ 	width: 100%;
   margin: 20px 0 0;
+}
+
+@media all and (min-width: 670px) {
+  .smooth-directory__item {
+    width: 50%;
+  }
 }
 
 .smooth-directory__item img {
@@ -39,7 +45,14 @@
   float: left;
   width: 100%;
   padding: 6px 10px;
+  margin: 10px 0 0;
   background: #ccc;
+}
+
+@media all and (min-width: 670px) {
+  .smooth-filter-row strong {
+    display: inline;
+  }
 }
 
 .smooth-filter-row a {
@@ -51,6 +64,23 @@
   color: #fff;
 }
 
-.smooth-filter-row__cat {
-  margin: 0 3px 0 25px;
+.smooth-filter-row__cat strong {
+  display: block;
+}
+
+@media all and (min-width: 600px) {
+  .smooth-filter-row__cat strong {
+    display: inline;
+    margin: 0 6px 0 0;
+  }
+}
+
+@media all and (min-width: 1150px) {
+  .smooth-filter-row__letters {
+    float: left;
+  }
+
+  .smooth-filter-row__cat {
+    float: right;
+  }
 }
