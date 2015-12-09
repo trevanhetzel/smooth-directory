@@ -66,7 +66,16 @@ if ( $overridden_template = locate_template( 'archive-businesses.php' ) ) {
       setup_postdata ( $post ); ?>
       <li class="smooth-directory__item">
         <?php
-        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/partials/meta-values.php';
+        $contact_value = get_post_meta( get_the_ID(), 'meta_business_contact', true );
+        $email_value = get_post_meta( get_the_ID(), 'meta_business_email', true );
+        $description_value = get_post_meta( get_the_ID(), 'meta_business_description', true );
+        $website_value = get_post_meta( get_the_ID(), 'meta_business_website', true );
+        $phone_value = get_post_meta( get_the_ID(), 'meta_business_phone', true );
+        $address_value = get_post_meta( get_the_ID(), 'meta_business_address', true );
+        $city_value = get_post_meta( get_the_ID(), 'meta_business_city', true );
+        $state_value = get_post_meta( get_the_ID(), 'meta_business_state', true );
+        $zip_value = get_post_meta( get_the_ID(), 'meta_business_zip', true );
+        $logo_value = get_post_meta( get_the_ID(), 'meta_business_logo', true );
 
         if ($logo_value) {
           $featured_logo = business_get_featured_image( $logo_value );
@@ -143,7 +152,16 @@ if ( $overridden_template = locate_template( 'archive-businesses.php' ) ) {
     $business_query->the_post(); ?>
       <li class="smooth-directory__item">
         <?php
-        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/partials/meta-values.php';
+        $contact_value = get_post_meta( get_the_ID(), 'meta_business_contact', true );
+        $email_value = get_post_meta( get_the_ID(), 'meta_business_email', true );
+        $description_value = get_post_meta( get_the_ID(), 'meta_business_description', true );
+        $website_value = get_post_meta( get_the_ID(), 'meta_business_website', true );
+        $phone_value = get_post_meta( get_the_ID(), 'meta_business_phone', true );
+        $address_value = get_post_meta( get_the_ID(), 'meta_business_address', true );
+        $city_value = get_post_meta( get_the_ID(), 'meta_business_city', true );
+        $state_value = get_post_meta( get_the_ID(), 'meta_business_state', true );
+        $zip_value = get_post_meta( get_the_ID(), 'meta_business_zip', true );
+        $logo_value = get_post_meta( get_the_ID(), 'meta_business_logo', true );
 
         if ($logo_value) {
           $featured_logo = business_get_featured_image( $logo_value );
