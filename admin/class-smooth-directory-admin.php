@@ -291,16 +291,6 @@ class Smooth_Directory_Admin {
 		update_post_meta( $post_id, 'meta_business_logo', $logo_data );
 	} // business_save_meta_box_data()
 
-	public function business_check_dependencies () {
-		if ( ! defined('REST_API_VERSION') ) {
-			function business_admin_notice () {
-				printf('<div class="error"><p>%s</p></div>', __('Activate the WP REST API plugin. It is required to use Smooth Directory.'));
-			}
-
-			add_action('admin_notices', 'business_admin_notice');
-		}
-	} // business_check_dependencies()
-
 	/**
 	 * Creates menu page
 	 *
