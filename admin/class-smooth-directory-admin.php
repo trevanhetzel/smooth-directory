@@ -301,4 +301,32 @@ class Smooth_Directory_Admin {
 		}
 	} // business_check_dependencies()
 
+	/**
+	 * Creates menu page
+	 *
+	 * @since 	1.0.0
+	 * @return 	void
+	 */
+	function business_menu() {
+		add_submenu_page( 'edit.php?post_type=businesses', 'Smooth Directory Settigns', 'Settings', 'publish_posts', 'smooth-directory-settings', 'business_options');
+
+		function business_options() {
+			if ( !current_user_can( 'manage_options' ) )  {
+				wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
+			}
+
+			include( plugin_dir_path( __FILE__ ) . 'partials/smooth-directory-admin-options.php' );
+		} // business_options()
+	} // business_menu()
+
+	/**
+	 * Inits settings fields
+	 *
+	 * @since 	1.0.0
+	 * @return 	void
+	 */
+	function business_settings_init() {
+		register_setting('business_group','business_setting_header_bg');
+	} // business_settings_init()
+
 }

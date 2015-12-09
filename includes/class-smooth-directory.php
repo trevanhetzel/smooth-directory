@@ -164,6 +164,9 @@ class Smooth_Directory {
 		$this->loader->add_action( 'init', $plugin_admin, 'business_check_dependencies', 10, 2 );
 
 		add_image_size( 'business-thumb', 155, 100, true );
+
+		$this->loader->add_action( 'admin_menu', $plugin_admin, 'business_menu', 10, 2 );
+		$this->loader->add_action( 'admin_init', $plugin_admin, 'business_settings_init', 10, 2 );
 	}
 
 	/**
@@ -179,9 +182,11 @@ class Smooth_Directory {
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 
+		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+
 		$this->loader->add_filter( 'archive_template', $plugin_public, 'directory_get_archive_template', 10, 2 );
 
-		$this->loader->add_filter( 'query_vars', $plugin_public, 'directory_add_query_vars_filter', 10, 2 );		
+		$this->loader->add_filter( 'query_vars', $plugin_public, 'directory_add_query_vars_filter', 10, 2 );
 
 	}
 

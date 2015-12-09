@@ -44,4 +44,8 @@ jQuery(document).ready(function ($) {
     	$('#business_logo--preview img').remove();
     	$('#business_logo').val('');
     });
+
+    $(function () {
+        $('#business_setting_header_bg').wpColorPicker();
+    });
 });
