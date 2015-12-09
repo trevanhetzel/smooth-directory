@@ -75,6 +75,18 @@ class Smooth_Directory_Public {
 
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/smooth-directory-public.css', array(), $this->version, 'all' );
 
+		$header_bg = get_option('business_setting_header_bg');
+
+		if ($header_bg) {
+			$inline_css = "
+				.smooth-filter-row {
+					background: {$header_bg};
+				}
+			";
+
+			wp_add_inline_style( $this->plugin_name, $inline_css );
+		}
+
 	}
 
 	/**
