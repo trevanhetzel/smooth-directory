@@ -39,7 +39,8 @@ if ( $overridden_template = locate_template( 'taxonomy-businesses_category.php' 
     <a href="<?php echo esc_url( home_url() ); ?>/businesses?letter=z">Z</a>
     <span>|</span>
     <a href="<?php echo esc_url( home_url() ); ?>/businesses">All</a>
-
+    </div>
+    
     <?php echo '<div class="smooth-filter-row__cat"><strong>Category:</strong>';
     $taxonomies = array( 
       'business_category'
@@ -150,7 +151,7 @@ if ( $overridden_template = locate_template( 'taxonomy-businesses_category.php' 
     </div>
   </div>
 
-  get_footer();
+  <?php get_footer();
 
 }
 

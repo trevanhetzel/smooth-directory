@@ -185,6 +185,7 @@ class Smooth_Directory {
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
 		$this->loader->add_filter( 'archive_template', $plugin_public, 'directory_get_archive_template', 10, 2 );
+		$this->loader->add_filter( 'taxonomy_template', $plugin_public, 'directory_get_taxonomy_template', 10, 2 );
 
 		$this->loader->add_filter( 'query_vars', $plugin_public, 'directory_add_query_vars_filter', 10, 2 );
 

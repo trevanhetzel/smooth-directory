@@ -117,6 +117,22 @@ class Smooth_Directory_Public {
 	} // directory_get_archive_template()
 
 	/**
+	 * Registers taxonomy directory template
+	 *
+	 * @since 	1.0.0
+	 * @access 	public
+	 */
+	public function directory_get_taxonomy_template($taxonomy_template) {
+		global $post;
+
+		if ($post->post_type == 'businesses') {
+			$taxonomy_template = dirname( __FILE__ ) . '/taxonomy-business_category.php';
+		}
+    
+    return $taxonomy_template;
+	} // directory_get_taxonomy_template()
+
+	/**
 	 * Registers custom query variables
 	 *
 	 * @since 	1.0.0
