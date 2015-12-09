@@ -33,60 +33,7 @@ if ( $overridden_template = locate_template( 'archive-businesses.php' ) ) {
     echo '</div>';
   }
 
-  echo '<div class="smooth-filter-row"><div class="smooth-filter-row__letters"><strong>Business Name: </strong>'; ?>
-
-  <a href="<?php echo esc_url( home_url() ); ?>/businesses?letter=a">A</a>
-  <a href="<?php echo esc_url( home_url() ); ?>/businesses?letter=b">B</a>
-  <a href="<?php echo esc_url( home_url() ); ?>/businesses?letter=c">C</a>
-  <a href="<?php echo esc_url( home_url() ); ?>/businesses?letter=d">D</a>
-  <a href="<?php echo esc_url( home_url() ); ?>/businesses?letter=e">E</a>
-  <a href="<?php echo esc_url( home_url() ); ?>/businesses?letter=f">F</a>
-  <a href="<?php echo esc_url( home_url() ); ?>/businesses?letter=g">G</a>
-  <a href="<?php echo esc_url( home_url() ); ?>/businesses?letter=h">H</a>
-  <a href="<?php echo esc_url( home_url() ); ?>/businesses?letter=i">I</a>
-  <a href="<?php echo esc_url( home_url() ); ?>/businesses?letter=j">J</a>
-  <a href="<?php echo esc_url( home_url() ); ?>/businesses?letter=k">K</a>
-  <a href="<?php echo esc_url( home_url() ); ?>/businesses?letter=l">L</a>
-  <a href="<?php echo esc_url( home_url() ); ?>/businesses?letter=m">M</a>
-  <a href="<?php echo esc_url( home_url() ); ?>/businesses?letter=n">N</a>
-  <a href="<?php echo esc_url( home_url() ); ?>/businesses?letter=o">O</a>
-  <a href="<?php echo esc_url( home_url() ); ?>/businesses?letter=p">P</a>
-  <a href="<?php echo esc_url( home_url() ); ?>/businesses?letter=q">Q</a>
-  <a href="<?php echo esc_url( home_url() ); ?>/businesses?letter=r">R</a>
-  <a href="<?php echo esc_url( home_url() ); ?>/businesses?letter=s">S</a>
-  <a href="<?php echo esc_url( home_url() ); ?>/businesses?letter=t">T</a>
-  <a href="<?php echo esc_url( home_url() ); ?>/businesses?letter=u">U</a>
-  <a href="<?php echo esc_url( home_url() ); ?>/businesses?letter=v">V</a>
-  <a href="<?php echo esc_url( home_url() ); ?>/businesses?letter=w">W</a>
-  <a href="<?php echo esc_url( home_url() ); ?>/businesses?letter=x">X</a>
-  <a href="<?php echo esc_url( home_url() ); ?>/businesses?letter=y">Y</a>
-  <a href="<?php echo esc_url( home_url() ); ?>/businesses?letter=z">Z</a>
-  <span>|</span>
-  <a href="<?php echo esc_url( home_url() ); ?>/businesses">All</a>
-  </div>
-
-  <?php echo '<div class="smooth-filter-row__cat"><strong>Category:</strong>';
-  $taxonomies = array( 
-     'business_category'
-  );
-
-  $taxArgs = array(
-    'orderby'           => 'name', 
-    'order'             => 'ASC',
-    'hide_empty'        => true
-  ); 
-
-  $taxTerms = get_terms($taxonomies, $taxArgs);
-
-  if ( ! empty( $taxTerms ) && ! is_wp_error( $taxTerms ) ){
-    echo '<select id="smooth-filter-cat">';
-    foreach ( $taxTerms as $term ) {
-      echo '<option value="' . get_term_link($term) . '">' . $term->name . '</option>';
-    }
-    echo '</select></div>';
-  }
-
-  echo '</div>';
+  require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/partials/filter-row.php';
 
   echo '<ul class="smooth-directory">';
 
@@ -119,16 +66,7 @@ if ( $overridden_template = locate_template( 'archive-businesses.php' ) ) {
       setup_postdata ( $post ); ?>
       <li class="smooth-directory__item">
         <?php
-        $contact_value = get_post_meta( get_the_ID(), 'meta_business_contact', true );
-        $email_value = get_post_meta( get_the_ID(), 'meta_business_email', true );
-        $description_value = get_post_meta( get_the_ID(), 'meta_business_description', true );
-        $website_value = get_post_meta( get_the_ID(), 'meta_business_website', true );
-        $phone_value = get_post_meta( get_the_ID(), 'meta_business_phone', true );
-        $address_value = get_post_meta( get_the_ID(), 'meta_business_address', true );
-        $city_value = get_post_meta( get_the_ID(), 'meta_business_city', true );
-        $state_value = get_post_meta( get_the_ID(), 'meta_business_state', true );
-        $zip_value = get_post_meta( get_the_ID(), 'meta_business_zip', true );
-        $logo_value = get_post_meta( get_the_ID(), 'meta_business_logo', true );
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/partials/meta-values.php';
 
         if ($logo_value) {
           $featured_logo = business_get_featured_image( $logo_value );
@@ -205,16 +143,7 @@ if ( $overridden_template = locate_template( 'archive-businesses.php' ) ) {
     $business_query->the_post(); ?>
       <li class="smooth-directory__item">
         <?php
-        $contact_value = get_post_meta( get_the_ID(), 'meta_business_contact', true );
-        $email_value = get_post_meta( get_the_ID(), 'meta_business_email', true );
-        $description_value = get_post_meta( get_the_ID(), 'meta_business_description', true );
-        $website_value = get_post_meta( get_the_ID(), 'meta_business_website', true );
-        $phone_value = get_post_meta( get_the_ID(), 'meta_business_phone', true );
-        $address_value = get_post_meta( get_the_ID(), 'meta_business_address', true );
-        $city_value = get_post_meta( get_the_ID(), 'meta_business_city', true );
-        $state_value = get_post_meta( get_the_ID(), 'meta_business_state', true );
-        $zip_value = get_post_meta( get_the_ID(), 'meta_business_zip', true );
-        $logo_value = get_post_meta( get_the_ID(), 'meta_business_logo', true );
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/partials/meta-values.php';
 
         if ($logo_value) {
           $featured_logo = business_get_featured_image( $logo_value );
