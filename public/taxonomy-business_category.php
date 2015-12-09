@@ -1,5 +1,5 @@
 <?php
-if ( $overridden_template = locate_template( 'taxonomy-businesses_category.php' ) ) {
+if ( $overridden_template = locate_template( 'taxonomy-business_category.php' ) ) {
    // locate_template() returns path to file
    // if either the child theme or the parent theme have overridden the template
    load_template( $overridden_template );
