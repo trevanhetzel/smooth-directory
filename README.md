@@ -40,4 +40,6 @@ No. Currently, only one directory with the slug `businesses` is supported.
 
 ### Screenshots
 
-Coming soon
+![Desktop view](/assets/screenshot-1.png?raw=true "Desktop view")
+
+![Mobile view](/assets/screenshot-2.png?raw=true "Mobile view")

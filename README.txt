@@ -51,7 +51,9 @@ No. Currently, only one directory with the slug `businesses` is supported.
 
 == Screenshots ==
 
-Coming soon.
+1. Desktop view
+
+2. Mobile view
 
 == Changelog ==
 
