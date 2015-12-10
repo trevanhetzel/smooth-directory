@@ -57,5 +57,8 @@ No. Currently, only one directory with the slug `businesses` is supported.
 
 == Changelog ==
 
-= 1.0 =
+= v1.1 =
+* Add screenshots
+ 
+= v1.0 =
 * Initial release
