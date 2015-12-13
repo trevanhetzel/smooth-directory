@@ -57,7 +57,7 @@ No. Currently, only one directory with the slug `businesses` is supported.
 
 == Changelog ==
 
-= v1.2 =
+= v1.2.1 =
 * Use featured image instead of meta value
 
 = v1.1 =
