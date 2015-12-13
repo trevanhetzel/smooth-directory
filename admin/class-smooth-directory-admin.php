@@ -275,7 +275,6 @@ class Smooth_Directory_Admin {
 		$city_data = sanitize_text_field( $_POST['business_city'] );
 		$state_data = sanitize_text_field( $_POST['business_state'] );
 		$zip_data = sanitize_text_field( $_POST['business_zip'] );
-		$logo_data = sanitize_text_field( $_POST['business_logo'] );
 
 		// Update the meta field in the database.
 		update_post_meta( $post_id, 'meta_business_contact', $contact_data );
@@ -288,7 +287,6 @@ class Smooth_Directory_Admin {
 		update_post_meta( $post_id, 'meta_business_city', $city_data );
 		update_post_meta( $post_id, 'meta_business_state', $state_data );
 		update_post_meta( $post_id, 'meta_business_zip', $zip_data );
-		update_post_meta( $post_id, 'meta_business_logo', $logo_data );
 	} // business_save_meta_box_data()
 
 	/**

@@ -107,7 +107,7 @@ class Smooth_Directory_Public {
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
-		
+
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/smooth-directory-public.js', array( 'jquery' ), $this->version, false );
 
 	}
@@ -124,7 +124,7 @@ class Smooth_Directory_Public {
 		if (is_post_type_archive('businesses')) {
 			$archive_template = dirname( __FILE__ ) . '/archive-businesses.php';
 		}
-    
+
     return $archive_template;
 	} // directory_get_archive_template()
 
@@ -140,7 +140,7 @@ class Smooth_Directory_Public {
 		if ($post->post_type == 'businesses') {
 			$taxonomy_template = dirname( __FILE__ ) . '/taxonomy-business_category.php';
 		}
-    
+
     return $taxonomy_template;
 	} // directory_get_taxonomy_template()
 

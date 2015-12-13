@@ -1,251 +1,222 @@
 <?php
 if ( $overridden_template = locate_template( 'archive-businesses.php' ) ) {
-   // locate_template() returns path to file
-   // if either the child theme or the parent theme have overridden the template
-   load_template( $overridden_template );
+	 // locate_template() returns path to file
+	 // if either the child theme or the parent theme have overridden the template
+	 load_template( $overridden_template );
  } else {
 
-  get_header();
+	get_header();
 
-  echo '<h1 class="entry-title">Businesses</h1>';
+	echo '<h1 class="entry-title">Businesses</h1>';
 
-  $letter = get_query_var( 'letter', '' );
-  $paged = ( get_query_var( 'paged' ) ) ? absint( get_query_var( 'paged' ) ) : 1;
+	$letter = get_query_var( 'letter', '' );
+	$paged = ( get_query_var( 'paged' ) ) ? absint( get_query_var( 'paged' ) ) : 1;
 
-  $business_args = array(
-    'post_type' => 'businesses',
-    'orderby' => 'title',
-    'order' => 'ASC',
-    'paged' => $paged,
-    'posts_per_page' => 20
-  );
-  $business_query = new WP_Query( $business_args );
-  $big = 999999999; // need an unlikely integer
+	$business_args = array(
+		'post_type' => 'businesses',
+		'orderby' => 'title',
+		'order' => 'ASC',
+		'paged' => $paged,
+		'posts_per_page' => 20
+	);
+	$business_query = new WP_Query( $business_args );
+	$big = 999999999; // need an unlikely integer
 
-  if (!$letter) {
-    echo '<div class="smooth-pagination"><strong>Pages: </strong>';
-    echo paginate_links( array(
-      'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
-      'format' => '?paged=%#%',
-      'current' => max( 1, get_query_var('paged') ),
-      'total' => $business_query->max_num_pages
-    ) ); 
-    echo '</div>';
-  }
+	if (!$letter) {
+		echo '<div class="smooth-pagination"><strong>Pages: </strong>';
+		echo paginate_links( array(
+			'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+			'format' => '?paged=%#%',
+			'current' => max( 1, get_query_var('paged') ),
+			'total' => $business_query->max_num_pages
+		) );
+		echo '</div>';
+	}
 
-  require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/partials/filter-row.php';
+	require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/partials/filter-row.php';
 
-  echo '<ul class="smooth-directory">';
+	echo '<ul class="smooth-directory">';
 
-  function business_get_featured_image( $logo_value ) {
-    $new_logo = $logo_value;
-    // Get the file extension. We'll need to append this in a second.
-    $img_extension = pathinfo( $new_logo, PATHINFO_EXTENSION );
+	if ( $letter ) {
+		$abc_results = $wpdb->get_results(
+			"
+			SELECT * FROM $wpdb->posts
+			WHERE post_title LIKE '$letter%'
+			AND post_type = 'businesses'
+			AND post_status = 'publish';
+			"
+		);
 
-    // Chop off the file extension.
-    $new_logo = preg_replace( '/\\.[^.\\s]{3,4}$/', '', $new_logo );
+		foreach ( $abc_results as $post ) {
+			setup_postdata ( $post ); ?>
+			<li class="smooth-directory__item">
+				<?php
+				$contact_value = get_post_meta( get_the_ID(), 'meta_business_contact', true );
+				$email_value = get_post_meta( get_the_ID(), 'meta_business_email', true );
+				$description_value = get_post_meta( get_the_ID(), 'meta_business_description', true );
+				$website_value = get_post_meta( get_the_ID(), 'meta_business_website', true );
+				$phone_value = get_post_meta( get_the_ID(), 'meta_business_phone', true );
+				$address_value = get_post_meta( get_the_ID(), 'meta_business_address', true );
+				$city_value = get_post_meta( get_the_ID(), 'meta_business_city', true );
+				$state_value = get_post_meta( get_the_ID(), 'meta_business_state', true );
+				$zip_value = get_post_meta( get_the_ID(), 'meta_business_zip', true );
+				?>
 
-    // Add the text required to select the proper crop and add our file extension back.
-    $new_logo = $new_logo . '-150x100.' . $img_extension;
+				<?php if (get_the_title()) {
+					echo '<h3>';
+					the_title();
+					echo '</h3>';
+				} ?>
 
-    // Return the cropped featured image.
-    return $new_logo;
-  }
-
-  if ( $letter ) {
-    $abc_results = $wpdb->get_results(
-      "
-      SELECT * FROM $wpdb->posts
-      WHERE post_title LIKE '$letter%'
-      AND post_type = 'businesses'
-      AND post_status = 'publish'; 
-      "
-    );
-
-    foreach ( $abc_results as $post ) {
-      setup_postdata ( $post ); ?>
-      <li class="smooth-directory__item">
-        <?php
-        $contact_value = get_post_meta( get_the_ID(), 'meta_business_contact', true );
-        $email_value = get_post_meta( get_the_ID(), 'meta_business_email', true );
-        $description_value = get_post_meta( get_the_ID(), 'meta_business_description', true );
-        $website_value = get_post_meta( get_the_ID(), 'meta_business_website', true );
-        $phone_value = get_post_meta( get_the_ID(), 'meta_business_phone', true );
-        $address_value = get_post_meta( get_the_ID(), 'meta_business_address', true );
-        $city_value = get_post_meta( get_the_ID(), 'meta_business_city', true );
-        $state_value = get_post_meta( get_the_ID(), 'meta_business_state', true );
-        $zip_value = get_post_meta( get_the_ID(), 'meta_business_zip', true );
-        $logo_value = get_post_meta( get_the_ID(), 'meta_business_logo', true );
-
-        if ($logo_value) {
-          $featured_logo = business_get_featured_image( $logo_value );
-        }
-        ?>
-
-        <?php if (get_the_title()) { 
-          echo '<h3>';
-          the_title();
-          echo '</h3>';
-        } ?>
-
-        <div class="smooth-directory__interior">
-          <p>
-            <?php
-            if ($logo_value) {
-              echo '<img src="';
-              echo $featured_logo;
-              echo '">';
+				<div class="smooth-directory__interior">
+					<p>
+						<?php
+						if (has_post_thumbnail()) {
+              the_post_thumbnail('business-thumb');
             }
 
-            if ($contact_value) {
-              echo '<strong>';
-              echo $contact_value;
-              echo '</strong>';
-            }
-            
-            if ($address_value) {
-              echo '<br>';
-              echo $address_value;
-            }
+						if ($contact_value) {
+							echo '<strong>';
+							echo $contact_value;
+							echo '</strong>';
+						}
 
-            if ($city_value) {
-              echo '<br>';
-              echo $city_value;
-            }
+						if ($address_value) {
+							echo '<br>';
+							echo $address_value;
+						}
 
-            if ($state_value) {
-              echo ', ';
-              echo $state_value;
-            }
+						if ($city_value) {
+							echo '<br>';
+							echo $city_value;
+						}
 
-            if ($zip_value) {
-              echo ' ';
-              echo $zip_value;
-            }
+						if ($state_value) {
+							echo ', ';
+							echo $state_value;
+						}
 
-            if ($phone_value) {
-              echo '<br><strong>';
-              echo $phone_value;
-              echo '</strong>';
-            }
+						if ($zip_value) {
+							echo ' ';
+							echo $zip_value;
+						}
 
-            if ($website_value) {
-              echo '<br>';
-              echo $website_value;
-            }
+						if ($phone_value) {
+							echo '<br><strong>';
+							echo $phone_value;
+							echo '</strong>';
+						}
 
-            if ($email_value) {
-              echo '<br>';
-              echo $email_value;
-            }
-            ?>
-          </p>
+						if ($website_value) {
+							echo '<br>';
+							echo $website_value;
+						}
 
-          <p><?php echo get_post_meta( get_the_ID(), 'meta_business_description', true ); ?></p>
-        </div>
-      </li>
+						if ($email_value) {
+							echo '<br>';
+							echo $email_value;
+						}
+						?>
+					</p>
 
-    <?php }
-  } else if ( $business_query->have_posts() ) {
-    while ( $business_query->have_posts() ) {
-      
-    $business_query->the_post(); ?>
-      <li class="smooth-directory__item">
-        <?php
-        $contact_value = get_post_meta( get_the_ID(), 'meta_business_contact', true );
-        $email_value = get_post_meta( get_the_ID(), 'meta_business_email', true );
-        $description_value = get_post_meta( get_the_ID(), 'meta_business_description', true );
-        $website_value = get_post_meta( get_the_ID(), 'meta_business_website', true );
-        $phone_value = get_post_meta( get_the_ID(), 'meta_business_phone', true );
-        $address_value = get_post_meta( get_the_ID(), 'meta_business_address', true );
-        $city_value = get_post_meta( get_the_ID(), 'meta_business_city', true );
-        $state_value = get_post_meta( get_the_ID(), 'meta_business_state', true );
-        $zip_value = get_post_meta( get_the_ID(), 'meta_business_zip', true );
-        $logo_value = get_post_meta( get_the_ID(), 'meta_business_logo', true );
+					<p><?php echo get_post_meta( get_the_ID(), 'meta_business_description', true ); ?></p>
+				</div>
+			</li>
 
-        if ($logo_value) {
-          $featured_logo = business_get_featured_image( $logo_value );
-        }
-        ?>
+		<?php }
+	} else if ( $business_query->have_posts() ) {
+		while ( $business_query->have_posts() ) {
 
-        <?php if (get_the_title()) { 
-          echo '<h3>';
-          the_title();
-          echo '</h3>';
-        } ?>
+		$business_query->the_post(); ?>
+			<li class="smooth-directory__item">
+				<?php
+				$contact_value = get_post_meta( get_the_ID(), 'meta_business_contact', true );
+				$email_value = get_post_meta( get_the_ID(), 'meta_business_email', true );
+				$description_value = get_post_meta( get_the_ID(), 'meta_business_description', true );
+				$website_value = get_post_meta( get_the_ID(), 'meta_business_website', true );
+				$phone_value = get_post_meta( get_the_ID(), 'meta_business_phone', true );
+				$address_value = get_post_meta( get_the_ID(), 'meta_business_address', true );
+				$city_value = get_post_meta( get_the_ID(), 'meta_business_city', true );
+				$state_value = get_post_meta( get_the_ID(), 'meta_business_state', true );
+				$zip_value = get_post_meta( get_the_ID(), 'meta_business_zip', true );
+				?>
 
-        <div class="smooth-directory__interior">
-          <p>
-            <?php
-            if ($logo_value) {
-              echo '<img src="';
-              echo $featured_logo;
-              echo '">';
+				<?php if (get_the_title()) {
+					echo '<h3>';
+					the_title();
+					echo '</h3>';
+				} ?>
+
+				<div class="smooth-directory__interior">
+					<p>
+						<?php
+						if (has_post_thumbnail()) {
+              the_post_thumbnail('business-thumb');
             }
 
-            if ($contact_value) {
-              echo '<strong>';
-              echo $contact_value;
-              echo '</strong>';
-            }
-            
-            if ($address_value) {
-              echo '<br>';
-              echo $address_value;
-            }
+						if ($contact_value) {
+							echo '<strong>';
+							echo $contact_value;
+							echo '</strong>';
+						}
 
-            if ($city_value) {
-              echo '<br>';
-              echo $city_value;
-            }
+						if ($address_value) {
+							echo '<br>';
+							echo $address_value;
+						}
 
-            if ($state_value) {
-              echo ', ';
-              echo $state_value;
-            }
+						if ($city_value) {
+							echo '<br>';
+							echo $city_value;
+						}
 
-            if ($zip_value) {
-              echo ' ';
-              echo $zip_value;
-            }
+						if ($state_value) {
+							echo ', ';
+							echo $state_value;
+						}
 
-            if ($phone_value) {
-              echo '<br><strong>';
-              echo $phone_value;
-              echo '</strong>';
-            }
+						if ($zip_value) {
+							echo ' ';
+							echo $zip_value;
+						}
 
-            if ($website_value) {
-              echo '<br>';
-              echo $website_value;
-            }
+						if ($phone_value) {
+							echo '<br><strong>';
+							echo $phone_value;
+							echo '</strong>';
+						}
 
-            if ($email_value) {
-              echo '<br>';
-              echo $email_value;
-            }
-            ?>
-          </p>
+						if ($website_value) {
+							echo '<br>';
+							echo $website_value;
+						}
 
-          <p><?php echo get_post_meta( get_the_ID(), 'meta_business_description', true ); ?></p>
-        </div>
-      </li>
-  <?php }
-  echo '</ul>';
+						if ($email_value) {
+							echo '<br>';
+							echo $email_value;
+						}
+						?>
+					</p>
 
-  if (!$letter) {
-    echo '<div class="smooth-pagination"><strong>Pages: </strong>';
-    echo paginate_links( array(
-      'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
-      'format' => '?paged=%#%',
-      'current' => max( 1, get_query_var('paged') ),
-      'total' => $business_query->max_num_pages
-    ) ); 
-    echo '</div>';
-  }
-  }
+					<p><?php echo get_post_meta( get_the_ID(), 'meta_business_description', true ); ?></p>
+				</div>
+			</li>
+	<?php }
+	echo '</ul>';
 
-  get_footer();
+	if (!$letter) {
+		echo '<div class="smooth-pagination"><strong>Pages: </strong>';
+		echo paginate_links( array(
+			'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+			'format' => '?paged=%#%',
+			'current' => max( 1, get_query_var('paged') ),
+			'total' => $business_query->max_num_pages
+		) );
+		echo '</div>';
+	}
+	}
+
+	get_footer();
 
 }
 

@@ -27,8 +27,6 @@ $address2_value = get_post_meta( $post->ID, 'meta_business_address2', true );
 $city_value = get_post_meta( $post->ID, 'meta_business_city', true );
 $state_value = get_post_meta( $post->ID, 'meta_business_state', true );
 $zip_value = get_post_meta( $post->ID, 'meta_business_zip', true );
-$logo_value = get_post_meta( $post->ID, 'meta_business_logo', true );
-
 ?>
 
 <table class="form-table">
@@ -104,27 +102,6 @@ $logo_value = get_post_meta( $post->ID, 'meta_business_logo', true );
 			</th>
 			<td>
 				<input class="regular-text ltr" type="text" name="business_zip" id="business_zip" value="<?php echo esc_attr( $zip_value ); ?>">
-			</td>
-		</tr>
-		<tr>
-			<th scope="row">
-				<label for="business_logo"><?php _e( 'Logo', '' ); ?></label>
-			</th>
-			<td>
-				<input type="hidden" name="business_logo" id="business_logo" class="regular-text">
-
-				<?php if ($logo_value) { ?>
-					<div id="business_logo--preview" class="loaded">
-						<a href="#" id="business_logo--delete">&times;</a>
-						<img src="<?php echo esc_attr( $logo_value ); ?>" width="60" height="60">
-					</div>
-				<?php } else { ?>
-					<div id="business_logo--preview">
-						<a href="#" id="business_logo--delete">&times;</a>
-					</div>
-				<?php } ?>
-
-    			<input type="button" name="business_upload" id="business_upload" class="button-secondary" value="Upload Image">
 			</td>
 		</tr>
 	</tbody>

@@ -27,9 +27,8 @@ if ( $overridden_template = locate_template( 'taxonomy-business_category.php' ) 
         $city_value = get_post_meta( get_the_ID(), 'meta_business_city', true );
         $state_value = get_post_meta( get_the_ID(), 'meta_business_state', true );
         $zip_value = get_post_meta( get_the_ID(), 'meta_business_zip', true );
-        $logo_value = get_post_meta( get_the_ID(), 'meta_business_logo', true );
-        
-        if (get_the_title()) { 
+
+        if (get_the_title()) {
           echo '<h3>';
           the_title();
           echo '</h3>';
@@ -38,10 +37,8 @@ if ( $overridden_template = locate_template( 'taxonomy-business_category.php' ) 
         <div class="smooth-directory__interior">
           <p>
             <?php
-            if ($logo_value) {
-              echo '<img src="';
-              echo $logo_value;
-              echo '">';
+            if (has_post_thumbnail()) {
+              the_post_thumbnail('business-thumb');
             }
 
             if ($contact_value) {
@@ -49,7 +46,7 @@ if ( $overridden_template = locate_template( 'taxonomy-business_category.php' ) 
               echo $contact_value;
               echo '</strong>';
             }
-            
+
             if ($address_value) {
               echo '<br>';
               echo $address_value;
