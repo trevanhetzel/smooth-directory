@@ -9,14 +9,14 @@
  * that starts the plugin.
  *
  * @link              http://trevan.co
- * @since             1.1
+ * @since             1.0
  * @package           Smooth_Directory
  *
  * @wordpress-plugin
  * Plugin Name:       Smooth Directory
  * Plugin URI:        http://trevan.co
  * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
- * Version:           1.0.0
+ * Version:           1.2
  * Author:            Trevan Hetzel
  * Author URI:        http://trevan.co
  * License:           GPL-2.0+
