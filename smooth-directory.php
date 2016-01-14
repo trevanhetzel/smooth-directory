@@ -15,7 +15,7 @@
  * @wordpress-plugin
  * Plugin Name:       Smooth Directory
  * Plugin URI:        http://trevan.co
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
+ * Description:       A simple and flexible business directory plugin
  * Version:           1.2.1
  * Author:            Trevan Hetzel
  * Author URI:        http://trevan.co
