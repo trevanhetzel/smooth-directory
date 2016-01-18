@@ -109,7 +109,7 @@ if ( $overridden_template = locate_template( 'archive-businesses.php' ) ) {
 
 						if ($website_value) {
 							echo '<br>';
-							echo $website_value;
+							echo '<a href="' . $website_value . '">' . $website_value . '</a>';
 						}
 
 						if ($email_value) {
@@ -188,7 +188,7 @@ if ( $overridden_template = locate_template( 'archive-businesses.php' ) ) {
 
 						if ($website_value) {
 							echo '<br>';
-							echo $website_value;
+							echo '<a href="' . $website_value . '">' . $website_value . '</a>';
 						}
 
 						if ($email_value) {
