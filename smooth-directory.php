@@ -16,7 +16,7 @@
  * Plugin Name:       Smooth Directory
  * Plugin URI:        http://trevan.co
  * Description:       A simple and flexible business directory plugin
- * Version:           1.2.2
+ * Version:           1.2.3
  * Author:            Trevan Hetzel
  * Author URI:        http://trevan.co
  * License:           GPL-2.0+

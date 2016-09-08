@@ -57,6 +57,9 @@ No. Currently, only one directory with the slug `businesses` is supported.
 
 == Changelog ==
 
+= v1.2.3 =
+* Add single page template
+
 = v1.2.2 =
 * Add hyperlinks for website
 
