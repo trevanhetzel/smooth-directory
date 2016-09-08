@@ -129,6 +129,22 @@ class Smooth_Directory_Public {
 	} // directory_get_archive_template()
 
 	/**
+	 * Registers single directory template
+	 *
+	 * @since 	1.0.0
+	 * @access 	public
+	 */
+	public function directory_get_single_template($single_template) {
+		global $post;
+
+		if (is_singular('businesses')) {
+			$single_template = dirname( __FILE__ ) . '/single-businesses.php';
+		}
+
+    return $single_template;
+	} // directory_get_single_template()
+
+	/**
 	 * Registers taxonomy directory template
 	 *
 	 * @since 	1.0.0
